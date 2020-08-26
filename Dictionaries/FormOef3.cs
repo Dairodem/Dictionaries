@@ -34,26 +34,72 @@ namespace Dictionaries
             extendedWb.Add("Tafel", new List<string>() { "Table", "Table", "Tabelle", "Mesa", "Stół" });
             extendedWb.Add("Vuur", new List<string>() { "Fire", "Feu", "Feuer", "Fuego", "Ogień" });
 
-            cbWoorden.DataSource = new BindingSource(extendedWb, null);
-            cbWoorden.DisplayMember = "Key";
-            //cbWoorden.ValueMember = "Value";
-
+            LoadComboBox();
 
         }
 
         private void cbWoorden_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblVertalng.Text = "";
-            KeyValuePair<string, List<string>> pair = (KeyValuePair<string, List<string>>)cbWoorden.SelectedItem;
-            int teller = 0;
 
-            foreach (string vertaling in pair.Value)
+            if (cbWoorden.SelectedIndex >= 0)
             {
+                lblVertalng.Text = "";
+                KeyValuePair<string, List<string>> pair = (KeyValuePair<string, List<string>>)cbWoorden.SelectedItem;
+                int teller = 0;
 
-                lblVertalng.Text += Talen[teller] +  vertaling + "\n";
+                foreach (string vertaling in pair.Value)
+                {
 
-                teller++;
+                    lblVertalng.Text += Talen[teller] + vertaling + "\n";
+
+                    teller++;
+                }
             }
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            FormVoegToe formVoegToe = new FormVoegToe();
+            formVoegToe.ShowDialog();
+
+            if (formVoegToe.DialogResult == DialogResult.OK)
+            {
+                bool isSame = false;
+
+                foreach (KeyValuePair<string, List<string>> pair in extendedWb)
+                {
+                    if (pair.Key == formVoegToe.Ned)
+                    {
+                        isSame = true;
+                        MessageBox.Show($"{formVoegToe.Ned} bestaat al!");
+                        break;
+                    }
+                }
+                if (!isSame)
+                {
+                    extendedWb.Add(formVoegToe.Ned, new List<string>() { formVoegToe.Eng,formVoegToe.Fr,formVoegToe.Dui,formVoegToe.Esp,formVoegToe.Pol });
+
+                }
+            }
+
+            LoadComboBox();
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+            KeyValuePair<string, List<string>> selected = (KeyValuePair<string, List<string>>)cbWoorden.SelectedItem;
+            extendedWb.Remove(selected.Key);
+            LoadComboBox();
+        }
+
+        private void LoadComboBox()
+        {
+            cbWoorden.DataSource = null;
+            cbWoorden.DataSource = new BindingSource(extendedWb, null);
+            cbWoorden.DisplayMember = "Key";
         }
     }
 }

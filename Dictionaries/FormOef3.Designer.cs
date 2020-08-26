@@ -30,6 +30,8 @@
         {
             this.cbWoorden = new System.Windows.Forms.ComboBox();
             this.lblVertalng = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cbWoorden
@@ -37,7 +39,7 @@
             this.cbWoorden.FormattingEnabled = true;
             this.cbWoorden.Location = new System.Drawing.Point(13, 13);
             this.cbWoorden.Name = "cbWoorden";
-            this.cbWoorden.Size = new System.Drawing.Size(201, 21);
+            this.cbWoorden.Size = new System.Drawing.Size(218, 21);
             this.cbWoorden.TabIndex = 0;
             this.cbWoorden.SelectedIndexChanged += new System.EventHandler(this.cbWoorden_SelectedIndexChanged);
             // 
@@ -50,11 +52,33 @@
             this.lblVertalng.TabIndex = 1;
             this.lblVertalng.Text = "vertalingen";
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(13, 118);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(97, 30);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "Voeg Woord Toe";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(134, 118);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(97, 30);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.Text = "Verwijder";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // FormOef3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 160);
+            this.ClientSize = new System.Drawing.Size(243, 156);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblVertalng);
             this.Controls.Add(this.cbWoorden);
             this.Name = "FormOef3";
@@ -70,5 +94,7 @@
 
         private System.Windows.Forms.ComboBox cbWoorden;
         private System.Windows.Forms.Label lblVertalng;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
