@@ -173,6 +173,7 @@
             this.Controls.Add(this.txtEng);
             this.Controls.Add(this.txtNed);
             this.Name = "FormVoegToe";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormVoegToe";
             this.ResumeLayout(false);
             this.PerformLayout();
